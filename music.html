@@ -227,7 +227,7 @@ cursor:pointer;
 .music-player{
 display:none;
 position:fixed;
-bottom:65px;
+bottom:55px;
 left:50%;
 transform:translateX(-50%);
 width:90%;
@@ -239,7 +239,6 @@ border-radius:18px;
 z-index:2000;
 box-shadow:0 0 20px rgba(0,0,0,.5);
 }
-
 
 .music-player.show{
 display:block;
@@ -330,7 +329,7 @@ background:linear-gradient(135deg,#2563eb,#60a5fa);
 font-size:18px;
 padding:0;
 }
-
+ 
 .music-control button:hover{
 transform:scale(1.1);
 }
@@ -573,15 +572,6 @@ class="progress">
 <div class="volume-box">
 
 <span>🔊</span>
-
-<input 
-class="volume"
-type="range"
-min="0"
-max="1"
-step="0.01"
-value="1"
-oninput="audio.volume=this.value">
 
 </div>
 
