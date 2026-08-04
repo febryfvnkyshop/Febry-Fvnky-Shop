@@ -310,6 +310,40 @@ opacity:1;
 transform:translateY(0);
 }
 }
+
+.time-box{
+font-size:12px;
+margin-bottom:8px;
+color:#ddd;
+}
+
+.progress{
+width:100%;
+}
+
+.music-control button{
+width:45px;
+height:45px;
+border-radius:50%;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+font-size:18px;
+padding:0;
+}
+
+.music-control button:hover{
+transform:scale(1.1);
+}
+
+.volume-box{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+}
+
+.volume{
+flex:1;
+}
  
 </style>
 
@@ -502,7 +536,6 @@ transform:translateY(0);
 
 </div>
 
-
 <div class="music-player" id="player">
 
 <div class="song-title">
@@ -511,15 +544,45 @@ transform:translateY(0);
 
 <audio id="audio"></audio>
 
+<div class="time-box">
+<span id="currentTime">00:00</span>
+/
+<span id="duration">00:00</span>
+</div>
+
+<input 
+type="range"
+id="progress"
+value="0"
+class="progress">
+
 <div class="music-control">
 
-<button onclick="prevSong()">⏮</button>
+<button onclick="back10()">⏪</button>
 
 <button onclick="togglePlay()" id="playBtn">
 ▶️
 </button>
 
-<button onclick="nextSong()">⏭</button>
+<button onclick="forward10()">⏩</button>
+
+</div>
+
+
+<div class="volume-box">
+
+<span>🔊</span>
+
+<input 
+class="volume"
+type="range"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="audio.volume=this.value">
+
+</div>
 
 </div>
 
@@ -575,6 +638,64 @@ file:"DJ-STECU-X-PICA-FebryFvnky.mp3"
 
 let index = 0;
 let audio = document.getElementById("audio");
+
+let progress=document.getElementById("progress");
+let currentTime=document.getElementById("currentTime");
+let duration=document.getElementById("duration");
+
+
+audio.ontimeupdate=function(){
+
+if(audio.duration){
+
+progress.value =
+(audio.currentTime/audio.duration)*100;
+
+currentTime.innerHTML =
+formatTime(audio.currentTime);
+
+duration.innerHTML =
+formatTime(audio.duration);
+
+}
+
+}
+
+
+progress.oninput=function(){
+
+audio.currentTime =
+(progress.value/100)*audio.duration;
+
+}
+
+
+function forward10(){
+
+audio.currentTime +=10;
+
+}
+
+
+function back10(){
+
+audio.currentTime -=10;
+
+}
+
+
+function formatTime(time){
+
+let min=Math.floor(time/60);
+let sec=Math.floor(time%60);
+
+if(sec<10){
+sec="0"+sec;
+}
+
+return min+":"+sec;
+
+}
 
 audio.onended=function(){
 nextSong();
