@@ -576,6 +576,10 @@ file:"DJ-STECU-X-PICA-FebryFvnky.mp3"
 let index = 0;
 let audio = document.getElementById("audio");
 
+audio.onended=function(){
+nextSong();
+}
+
 
 function playMusic(id, btn){
 
