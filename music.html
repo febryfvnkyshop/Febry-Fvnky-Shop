@@ -224,7 +224,7 @@ filter:brightness(1.15);
 cursor:pointer;
 }
 
-.music-player{
+ .music-player{
 display:none;
 position:fixed;
 bottom:80px;
@@ -232,12 +232,54 @@ left:50%;
 transform:translateX(-50%);
 width:95%;
 max-width:500px;
+background:rgba(20,20,20,0.85);
+backdrop-filter:blur(15px);
+padding:15px;
+border-radius:20px;
 z-index:2000;
-border-radius:15px;
+box-shadow:0 0 25px rgba(0,0,0,.5);
 }
- 
+
 .music-player.show{
 display:block;
+}
+
+.song-title{
+overflow:hidden;
+white-space:nowrap;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.song-title span{
+display:inline-block;
+animation:runningText 8s linear infinite;
+}
+
+@keyframes runningText{
+from{
+transform:translateX(100%);
+}
+to{
+transform:translateX(-100%);
+}
+}
+
+.music-control{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:10px 0;
+}
+
+.music-control button{
+padding:8px 12px;
+border-radius:50%;
+background:#2563eb;
+}
+
+.volume{
+width:100%;
 }
 
 .stats-box{
@@ -460,7 +502,35 @@ transform:translateY(0);
 
 </div>
 
+
+<div class="music-player" id="player">
+
+<div class="song-title">
+<span id="songName">🎵 Tidak ada lagu</span>
 </div>
+
+<audio id="audio"></audio>
+
+<div class="music-control">
+
+<button onclick="prevSong()">⏮</button>
+
+<button onclick="togglePlay()" id="playBtn">
+▶️
+</button>
+
+<button onclick="nextSong()">⏭</button>
+
+</div>
+
+<input 
+class="volume"
+type="range"
+min="0"
+max="1"
+step="0.01"
+value="1"
+oninput="audio.volume=this.value">
 
 </div>
 
@@ -500,63 +570,103 @@ transform:translateY(0);
 
 <script>
 
+let songs = [
+{
+name:"🎵 Bintang 5 - Tenxi",
+file:"Bintang-5-FebryFvnky.mp3"
+},
+{
+name:"🎵 Nan Ko Paham",
+file:"DJ-NAN-KO-PAHAM-FebryFvnky.mp3"
+},
+{
+name:"🎵 Mashup Beda Agama",
+file:"DJ-BEDA AGAMA-FebryFvnky.mp3"
+},
+{
+name:"🎵 Ora Urus",
+file:"DJ-ORA-URUS-Febry Fvnky.mp3"
+},
+{
+name:"🎵 MASHUP KANE V1",
+file:"DJ MASHUP V1 Febry Fvnky.mp3"
+},
+{
+name:"🎵 STECU X PICA PICA",
+file:"DJ-STECU-X-PICA-FebryFvnky.mp3"
+}
+];
+
+let index = 0;
+let audio = document.getElementById("audio");
+
+
 function playMusic(id, btn){
 
-let audio = document.getElementById(id);
-let card = btn.closest(".card");
+index = Number(id.replace("audio","")) - 1;
+
+loadSong();
+
+document.getElementById("player").classList.add("show");
+
+audio.play();
+
+document.getElementById("playBtn").innerHTML="⏸";
+
+}
 
 
-// matikan semua audio lain
-document.querySelectorAll(".music-player").forEach(other=>{
-    if(other !== audio){
-        other.pause();
-        other.currentTime = 0;
-        other.classList.remove("show");
-    }
-});
+function loadSong(){
+
+audio.src = songs[index].file;
+
+document.getElementById("songName").innerHTML =
+"<span>"+songs[index].name+"</span>";
+
+}
 
 
-// reset semua card
-document.querySelectorAll(".card").forEach(c=>{
-    c.classList.remove("playing");
-});
-
-
-// reset semua tombol
-document.querySelectorAll(".preview-btn").forEach(b=>{
-    b.innerHTML="🎧 Preview";
-});
-
+function togglePlay(){
 
 if(audio.paused){
 
-    audio.classList.add("show");
-
-    audio.play();
-
-    card.classList.add("playing");
-
-    btn.innerHTML="⏸ Pause";
-
-
-    audio.onended=function(){
-        audio.classList.remove("show");
-        card.classList.remove("playing");
-        btn.innerHTML="🎧 Preview";
-    };
-
+audio.play();
+document.getElementById("playBtn").innerHTML="⏸";
 
 }else{
 
-    audio.pause();
-
-    audio.classList.remove("show");
-
-    card.classList.remove("playing");
-
-    btn.innerHTML="🎧 Preview";
+audio.pause();
+document.getElementById("playBtn").innerHTML="▶️";
 
 }
+
+}
+
+
+function nextSong(){
+
+index++;
+
+if(index >= songs.length){
+index = 0;
+}
+
+loadSong();
+audio.play();
+
+}
+
+
+function prevSong(){
+
+index--;
+
+if(index < 0){
+index = songs.length-1;
+}
+
+loadSong();
+audio.play();
 
 }
 
