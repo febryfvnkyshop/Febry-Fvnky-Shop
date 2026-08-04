@@ -722,12 +722,12 @@ audio.play().catch(error=>{
 document.getElementById("playBtn").innerHTML="⏸";
 
 
-// efek card menyala
 document.querySelectorAll(".card").forEach(card=>{
     card.classList.remove("playing");
 });
 
-btn.closest(".card").classList.add("playing");
+let card = btn.closest(".card");
+card.classList.add("playing");
 
 }
  
