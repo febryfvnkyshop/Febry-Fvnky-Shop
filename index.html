@@ -16,21 +16,32 @@ text-align:center;
 padding-bottom:100px;
 
 opacity:0;
+filter:blur(10px);
 transform:scale(0.98);
 animation:pageIn .35s ease forwards;
 }
 
 @keyframes pageIn{
+from{
+opacity:0;
+filter:blur(10px);
+transform:scale(0.98);
+}
 to{
 opacity:1;
+filter:blur(0);
 transform:scale(1);
 }
 }
 
 body.fade-out{
 opacity:0;
-transform:scale(0.98);
-transition:.3s;
+filter:blur(10px);
+transform:scale(1.02);
+transition:
+opacity .35s ease,
+filter .35s ease,
+transform .35s ease;
 }
  
 header{
@@ -250,6 +261,28 @@ dengan harga yang cukup terjangkau.
 <a href="https://whatsapp.com/channel/0029VbCWJbiI7BeO2Rw3eu0U" target="_blank">⭐ Testimoni</a>
 
 </div>
+
+<script>
+
+document.querySelectorAll("a").forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+if(this.target=="_blank") return;
+
+e.preventDefault();
+
+document.body.classList.add("fade-out");
+
+setTimeout(()=>{
+location.href=this.href;
+},350);
+
+});
+
+});
+
+</script>
   
 </body>
 </html>
