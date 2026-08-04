@@ -699,12 +699,13 @@ return min+":"+sec;
 
 audio.onended=function(){
 
+audio.pause();
+
 document.getElementById("player").classList.remove("show");
 
-nextSong();
+document.getElementById("playBtn").innerHTML="▶️";
 
 }
-
 
 function playMusic(id, btn){
 
@@ -716,10 +717,9 @@ document.getElementById("player").classList.add("show");
 
 audio.play();
 
-document.getElementById("player").classList.add("show");
-
 document.getElementById("playBtn").innerHTML="⏸";
 
+}
 
 function loadSong(){
 
@@ -745,7 +745,7 @@ index = 0;
 loadSong();
 audio.play();
 
-}function togglePlay(){
+function togglePlay(){
 
 let player=document.getElementById("player");
 
