@@ -715,12 +715,22 @@ loadSong();
 
 document.getElementById("player").classList.add("show");
 
-audio.play();
+audio.play().catch(error=>{
+    console.log("Play diblokir:", error);
+});
 
 document.getElementById("playBtn").innerHTML="⏸";
 
-}
 
+// efek card menyala
+document.querySelectorAll(".card").forEach(card=>{
+    card.classList.remove("playing");
+});
+
+btn.closest(".card").classList.add("playing");
+
+}
+ 
 function loadSong(){
 
 audio.src = songs[index].file;
