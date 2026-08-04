@@ -31,8 +31,9 @@ color:#d1d5db;
 .card{
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(12px);
-width:300px;
-margin:30px auto;
+width:100%;
+margin:0;
+box-sizing:border-box;
 padding:20px;
 border-radius:20px;
 border:1px solid rgba(255,255,255,0.25);
@@ -43,6 +44,13 @@ inset 0 0 15px rgba(255,255,255,0.05);
 transition:all .4s ease;
 }
 
+.product-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:0 10px;
+}
+ 
 .card.playing{
 transform:translateY(-6px) scale(1.03);
 border:1px solid #60a5fa;
@@ -466,8 +474,12 @@ transform:translateY(0);
 <source src="DJ-STECU-X-PICA-FebryFvnky.mp3" type="audio/mpeg">
 </audio>
 
+</audio>
+
 </div>
- 
+
+</div>
+
 <div class="bottom-menu">
  
 <a href="index.html">🏠 Dashboard</a>
