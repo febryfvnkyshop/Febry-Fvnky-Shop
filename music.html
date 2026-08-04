@@ -698,7 +698,11 @@ return min+":"+sec;
 }
 
 audio.onended=function(){
+
+document.getElementById("player").classList.remove("show");
+
 nextSong();
+
 }
 
 
@@ -712,9 +716,9 @@ document.getElementById("player").classList.add("show");
 
 audio.play();
 
-document.getElementById("playBtn").innerHTML="⏸";
+document.getElementById("player").classList.add("show");
 
-}
+document.getElementById("playBtn").innerHTML="⏸";
 
 
 function loadSong(){
@@ -727,21 +731,7 @@ document.getElementById("songName").innerHTML =
 }
 
 
-function togglePlay(){
 
-if(audio.paused){
-
-audio.play();
-document.getElementById("playBtn").innerHTML="⏸";
-
-}else{
-
-audio.pause();
-document.getElementById("playBtn").innerHTML="▶️";
-
-}
-
-}
 
 
 function nextSong(){
@@ -754,6 +744,28 @@ index = 0;
 
 loadSong();
 audio.play();
+
+}function togglePlay(){
+
+let player=document.getElementById("player");
+
+if(audio.paused){
+
+audio.play();
+
+document.getElementById("playBtn").innerHTML="⏸";
+
+player.classList.add("show");
+
+}else{
+
+audio.pause();
+
+document.getElementById("playBtn").innerHTML="▶️";
+
+player.classList.remove("show");
+
+}
 
 }
 
