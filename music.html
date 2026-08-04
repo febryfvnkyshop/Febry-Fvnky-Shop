@@ -107,23 +107,23 @@ border-radius:8px;
 
 .bottom-menu{
 position:fixed;
-bottom:10px;
+bottom:15px;
 left:50%;
 transform:translateX(-50%);
 background:rgba(0,255,204,0.15);
 backdrop-filter:blur(10px);
-padding:6px 8px;
-border-radius:12px;
+padding:10px 15px;
+border-radius:15px;
 border:1px solid rgba(255,255,255,0.2);
 z-index:1000;
 white-space:nowrap;
 }
-  
+
 .bottom-menu a{
 color:white;
 text-decoration:none;
-margin:0 3px;
-font-size:10px;
+margin:0 6px;
+font-size:12px;
 display:inline-block;
 }
 
@@ -227,17 +227,18 @@ cursor:pointer;
 .music-player{
 display:none;
 position:fixed;
-bottom:55px;
+bottom:70px;
 left:50%;
 transform:translateX(-50%);
 width:90%;
 max-width:330px;
 background:rgba(20,20,20,0.9);
 backdrop-filter:blur(15px);
-padding:10px;
+padding:12px;
 border-radius:18px;
 z-index:2000;
 box-shadow:0 0 20px rgba(0,0,0,.5);
+box-sizing:border-box;
 }
 
 .music-player.show{
@@ -568,14 +569,9 @@ class="progress">
 
 </div>
 
-
 <div class="volume-box">
 
 <span>🔊</span>
-
-</div>
-
-</div>
 
 <input 
 class="volume"
@@ -586,6 +582,8 @@ step="0.01"
 value="1"
 oninput="audio.volume=this.value">
 
+</div>
+ 
 </div>
 
 <div class="bottom-menu">
