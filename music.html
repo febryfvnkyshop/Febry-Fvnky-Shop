@@ -45,9 +45,11 @@ transition:all .4s ease;
 
 .product-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(2, minmax(0, 1fr));
 gap:12px;
 padding:10px;
+max-width:500px;
+margin:auto;
 }
 
 .card img{
