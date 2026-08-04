@@ -470,24 +470,38 @@ transform:translateY(0);
 
 function playMusic(id, btn){
 
-let audio = document.getElementById(id);
+let audio=document.getElementById(id);
+let card=btn.closest(".card");
 
 document.querySelectorAll(".music-player").forEach(other=>{
-if(other !== audio){
+if(other!==audio){
 other.pause();
 other.classList.remove("show");
+other.closest(".card").classList.remove("playing");
 }
+});
+
+document.querySelectorAll(".preview-btn").forEach(b=>{
+b.innerHTML="🎧 Preview";
 });
 
 if(audio.paused){
 
 audio.classList.add("show");
 audio.play();
+card.classList.add("playing");
 btn.innerHTML="⏸ Pause";
+
+audio.onended=function(){
+card.classList.remove("playing");
+btn.innerHTML="🎧 Preview";
+};
 
 }else{
 
 audio.pause();
+audio.classList.remove("show");
+card.classList.remove("playing");
 btn.innerHTML="🎧 Preview";
 
 }
