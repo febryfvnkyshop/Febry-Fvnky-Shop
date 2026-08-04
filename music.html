@@ -502,44 +502,65 @@ transform:translateY(0);
 
 function playMusic(id, btn){
 
-let audio=document.getElementById(id);
-let card=btn.closest(".card");
+let audio = document.getElementById(id);
+let card = btn.closest(".card");
 
+
+// matikan semua audio lain
 document.querySelectorAll(".music-player").forEach(other=>{
-if(other!==audio){
-other.pause();
-other.classList.remove("show");
-}
+    if(other !== audio){
+        other.pause();
+        other.currentTime = 0;
+        other.classList.remove("show");
+    }
 });
 
+
+// reset semua card
 document.querySelectorAll(".card").forEach(c=>{
-c.classList.remove("playing");
+    c.classList.remove("playing");
 });
+
+
+// reset semua tombol
+document.querySelectorAll(".preview-btn").forEach(b=>{
+    b.innerHTML="🎧 Preview";
+});
+
 
 if(audio.paused){
 
-audio.classList.add("show");
-audio.play();
-card.classList.add("playing");
-btn.innerHTML="⏸ Pause";
+    audio.classList.add("show");
 
-audio.onended=function(){
-card.classList.remove("playing");
-btn.innerHTML="🎧 Preview";
-};
+    audio.play();
+
+    card.classList.add("playing");
+
+    btn.innerHTML="⏸ Pause";
+
+
+    audio.onended=function(){
+        audio.classList.remove("show");
+        card.classList.remove("playing");
+        btn.innerHTML="🎧 Preview";
+    };
+
 
 }else{
 
-audio.pause();
-audio.classList.remove("show");
-card.classList.remove("playing");
-btn.innerHTML="🎧 Preview";
+    audio.pause();
+
+    audio.classList.remove("show");
+
+    card.classList.remove("playing");
+
+    btn.innerHTML="🎧 Preview";
 
 }
 
 }
 
-</script> 
+</script>
 
 </body>
 </html>
