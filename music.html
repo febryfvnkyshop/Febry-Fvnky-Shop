@@ -100,10 +100,6 @@ gap:10px;
 margin-top:15px;
 }
 
-.action-row audio{
-flex:1;
-}
-
 .action-row button{
 white-space:nowrap;
 }
@@ -116,6 +112,14 @@ margin:10px 0 8px;
 letter-spacing:1px;
 } 
 
+.action-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-top:15px;
+}
+
 .preview-box{
 flex:1;
 }
@@ -124,10 +128,12 @@ flex:1;
 width:100%;
 }
 
-.action-row{
-display:flex;
-align-items:center;
-gap:10px;
+.action-row > a{
+flex:1;
+}
+
+.action-row > a button{
+width:100%;
 }
  
 </style>
@@ -259,20 +265,6 @@ gap:10px;
 </div>
 
 <script>
-const audios = document.querySelectorAll("audio");
-
-audios.forEach(audio => {
-  audio.addEventListener("play", () => {
-    audios.forEach(other => {
-      if (other !== audio) {
-        other.pause();
-        other.currentTime = 0; // kembali ke awal (opsional)
-      }
-    });
-  });
-});
-
-<script>
 
 function playMusic(btn){
 
@@ -281,7 +273,7 @@ let audio = btn.nextElementSibling;
 document.querySelectorAll("audio").forEach(other=>{
 if(other !== audio){
 other.pause();
-other.currentTime=0;
+other.currentTime = 0;
 }
 });
 
@@ -292,7 +284,9 @@ btn.innerHTML="⏸ Pause";
 audio.pause();
 btn.innerHTML="🎧 Preview";
 }
- 
+
+}
+
 </script> 
 
 </body>
