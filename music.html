@@ -509,12 +509,11 @@ document.querySelectorAll(".music-player").forEach(other=>{
 if(other!==audio){
 other.pause();
 other.classList.remove("show");
-other.closest(".card").classList.remove("playing");
 }
 });
 
-document.querySelectorAll(".preview-btn").forEach(b=>{
-b.innerHTML="🎧 Preview";
+document.querySelectorAll(".card").forEach(c=>{
+c.classList.remove("playing");
 });
 
 if(audio.paused){
