@@ -705,8 +705,11 @@ audio.onended=function(){
 audio.pause();
 
 document.getElementById("player").classList.remove("show");
-
 document.getElementById("playBtn").innerHTML="▶️";
+
+document.querySelectorAll(".card").forEach(card=>{
+    card.classList.remove("playing");
+});
 
 }
 
@@ -778,7 +781,10 @@ document.getElementById("playBtn").innerHTML="▶️";
 
 player.classList.remove("show");
 
-}
+// Matikan efek biru
+document.querySelectorAll(".card").forEach(card=>{
+    card.classList.remove("playing");
+});
 
 }
 
