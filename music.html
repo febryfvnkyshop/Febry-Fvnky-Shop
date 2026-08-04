@@ -141,19 +141,24 @@ letter-spacing:1px;
 
 <p><b>Harga: Rp50.000</b></p>
 
-<p class="preview-title">🎧 Preview Audio</p> 
+<div class="preview-box">
 
-<div class="action-row">
+<button class="preview-btn" onclick="playMusic(this)">
+🎧 Preview
+</button>
 
-<audio controls>
+<audio>
 <source src="Bintang-5-FebryFvnky.mp3" type="audio/mpeg">
 </audio>
 
-<a href="...">
-<button>Beli Sekarang</button>
+</div>
+
+<a href="https://wa.me/6287714002875?text=Halo%20Febry%20Fvnky%20%F0%9F%91%8B%0A%0ASaya%20ingin%20membeli%20produk%20berikut%3A%0A%0A%F0%9F%8E%B5%20Judul%20%3A%20Bintang%205%20-%20Tenxi%0A%F0%9F%8E%BC%20Style%20%3A%20Elart%20LA%0A%F0%9F%92%B0%20Harga%20%3A%20Rp50.000%0A%0AApakah%20produk%20ini%20masih%20tersedia%3F" target="_blank">
+
+<button>🛒 Beli Sekarang</button>
+
 </a>
-
-
+ 
 </div>
 </div>
 
@@ -169,18 +174,24 @@ letter-spacing:1px;
 
 <p class="sold">🔥 Terjual: 0</p>
  
-<p><b>Harga: Rp50.000</b></p>
+<p><b>Harga: Rp55.000</b></p>
 
-<p class="preview-title">🎧 Preview Audio</p>
- 
-<div class="action-row">
+<div class="preview-box">
 
-<audio controls>
-<source src="Bintang-5-FebryFvnky.mp3" type="audio/mpeg">
+<button class="preview-btn" onclick="playMusic(this)">
+🎧 Preview
+</button>
+
+<audio>
+<source src="DJ-NAN-KO-PAHAM-FebryFvnky.mp3" type="audio/mpeg">
 </audio>
 
-<a href="...">
-<button>Beli Sekarang</button>
+</div>
+
+<a href="https://wa.me/6287714002875?text=Halo%20Febry%20Fvnky%20%F0%9F%91%8B%0A%0ASaya%20ingin%20membeli%20produk%20berikut%3A%0A%0A%F0%9F%8E%B5%20Judul%20%3A%20Nan%20Ko%20Paham%0A%F0%9F%8E%BC%20Style%20%3A%20Maman%20Fvndy%0A%F0%9F%92%B0%20Harga%20%3A%20Rp55.000%0A%0AApakah%20produk%20ini%20masih%20tersedia%3F" target="_blank">
+
+<button>🛒 Beli Sekarang</button>
+
 </a>
 
 </div>
@@ -200,18 +211,24 @@ letter-spacing:1px;
 
 <p><b>Harga: Rp40.000</b></p>
 
-<p class="preview-title">🎧 Preview Audio</p>
- 
-<div class="action-row">
+<div class="preview-box">
 
-<audio controls>
+<button class="preview-btn" onclick="playMusic(this)">
+🎧 Preview
+</button>
+
+<audio>
 <source src="DJ-BEDA AGAMA-FebryFvnky.mp3" type="audio/mpeg">
 </audio>
 
-<a href="https://wa.me/6287714002875?text=Halo%20Febry%20Fvnky%20%F0%9F%91%8B%0A%0ASaya%20ingin%20membeli%20produk%20berikut%3A%0A%0A%F0%9F%8E%B5%20Judul%20%3A%20Mashup%20Beda%20Agama%0A%F0%9F%8E%BC%20Style%20%3A%20Koplo%20Pond5%0A%F0%9F%92%B0%20Harga%20%3A%20Rp40.000%0A%0AApakah%20produk%20ini%20masih%20tersedia%3F%0ATerima%20kasih." target="_blank">
-<button>Beli Sekarang</button>
-</a>
+</div>
 
+<a href="https://wa.me/6287714002875?text=Halo%20Febry%20Fvnky%20%F0%9F%91%8B%0A%0ASaya%20ingin%20membeli%20produk%20berikut%3A%0A%0A%F0%9F%8E%B5%20Judul%20%3A%20Mashup%20Beda%20Agama%0A%F0%9F%8E%BC%20Style%20%3A%20Koplo%20Pond5%0A%F0%9F%92%B0%20Harga%20%3A%20Rp40.000%0A%0AApakah%20produk%20ini%20masih%20tersedia%3F" target="_blank">
+
+<button>🛒 Beli Sekarang</button>
+
+</a>
+ 
 </div>
 </div>
 
@@ -236,7 +253,29 @@ audios.forEach(audio => {
     });
   });
 });
+
+<script>
+function playMusic(btn){
+
+let audio = btn.nextElementSibling;
+
+document.querySelectorAll("audio").forEach(other=>{
+if(other !== audio){
+other.pause();
+other.currentTime=0;
+}
+});
+
+if(audio.paused){
+audio.play();
+btn.innerHTML="⏸ Pause";
+}else{
+audio.pause();
+btn.innerHTML="🎧 Preview";
+}
+
+}
 </script> 
- 
+
 </body>
 </html>
