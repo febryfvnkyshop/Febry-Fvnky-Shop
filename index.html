@@ -51,6 +51,29 @@ margin:0 15px;
 font-size:16px;
 display:inline-block;
 }
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.brand img{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+
+.info-card{
+background:rgba(30,30,30,0.7);
+backdrop-filter:blur(10px);
+margin:25px auto;
+padding:20px;
+width:80%;
+max-width:400px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,255,204,.2);
+}
  
 </style>
 </head>
@@ -59,20 +82,70 @@ display:inline-block;
  
 <header>
 
-<img src="Logopreview1.jpg" width="200">
+<div class="brand">
+
+<img src="Logopreview1.jpg">
 
 <h1>🎵 Febry Fvnky Shop</h1>
 
-<p>Selamat datang di toko resmi kami</p>
-
-<p>Menyediakan Project FL Studio Mobile Berkualitas Serta Harga Yang Terjangkau</p>
-
-<a href="music.html">
-<button>Lihat Produk Musik</button>
-</a>
+</div>
 
 </header>
 
+
+<div class="info-card">
+
+<h2>🎵 Selamat Datang</h2>
+
+<p>
+Selamat datang di Febry Fvnky Shop.
+Kami menyediakan Project FL Studio Mobile berkualitas
+dengan harga terjangkau.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>🛒 Cara Kerja</h2>
+
+<p>
+1. Pilih produk di menu Produk<br>
+2. Dengarkan preview audio<br>
+3. Hubungi kami untuk pembelian<br>
+4. File dikirim setelah pembayaran
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>⭐ Keunggulan Kami</h2>
+
+<p>
+✓ Preview sebelum membeli<br>
+✓ Kualitas project terjamin<br>
+✓ Harga terjangkau<br>
+✓ Pelayanan yang mudah
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>📌 Peraturan Pembelian</h2>
+
+<p>
+Pastikan memilih produk yang sesuai.<br>
+File yang sudah dikirim tidak dapat ditukar.<br>
+Dilarang menyebarkan ulang file tanpa izin.
+</p>
+
+</div>
+ 
 <div class="bottom-menu">
 
 <a href="index.html">🏠 Dashboard</a>
