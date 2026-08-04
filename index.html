@@ -229,8 +229,6 @@ dengan harga yang cukup terjangkau.
 </ul>
 
 </div>
-
-</div>
  
 <div class="bottom-menu">
 
@@ -252,7 +250,7 @@ if(this.target=="_blank") return;
 
 e.preventDefault();
 
-document.querySelector(".page-content").classList.add("fade-out");
+document.body.classList.add("fade-out");
 
 setTimeout(()=>{
 location.href=this.href;
