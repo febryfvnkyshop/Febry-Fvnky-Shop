@@ -141,14 +141,6 @@ flex:1;
 width:100%;
 }
 
-button{
-background:#00cc88;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:8px;
-}
-
 .preview-btn{
 background:#6366f1;
 color:white;
@@ -325,7 +317,11 @@ let audio = btn.nextElementSibling;
 document.querySelectorAll("audio").forEach(other=>{
 if(other !== audio){
 other.pause();
+other.currentTime = 0;
 other.classList.remove("show");
+
+let otherBtn = other.previousElementSibling;
+otherBtn.innerHTML="🎧 Preview";
 }
 });
 
