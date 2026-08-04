@@ -713,30 +713,48 @@ document.querySelectorAll(".card").forEach(card=>{
 
 }
 
+
 function playMusic(id, btn){
 
-index = Number(id.replace("audio","")) - 1;
+let newIndex = Number(id.replace("audio","")) - 1;
+
+if(index === newIndex && !audio.paused){
+
+audio.pause();
+document.getElementById("player").classList.remove("show");
+document.getElementById("playBtn").innerHTML="▶️";
+btn.closest(".card").classList.remove("playing");
+return;
+
+}
+
+if(index === newIndex && audio.src){
+
+audio.play();
+document.getElementById("player").classList.add("show");
+document.getElementById("playBtn").innerHTML="⏸";
+btn.closest(".card").classList.add("playing");
+return;
+
+}
+
+index = newIndex;
 
 loadSong();
 
+audio.play();
+
 document.getElementById("player").classList.add("show");
-
-audio.play().catch(error=>{
-    console.log("Play diblokir:", error);
-});
-
 document.getElementById("playBtn").innerHTML="⏸";
-
 
 document.querySelectorAll(".card").forEach(card=>{
     card.classList.remove("playing");
 });
 
-let card = btn.closest(".card");
-card.classList.add("playing");
+btn.closest(".card").classList.add("playing");
 
 }
- 
+
 function loadSong(){
 
 audio.src = songs[index].file;
