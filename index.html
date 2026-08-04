@@ -14,7 +14,9 @@ color:white;
 font-family:Arial,sans-serif;
 text-align:center;
 padding-bottom:100px;
+}
 
+.page-content{
 opacity:0;
 filter:blur(10px);
 animation:pageIn .35s ease forwards;
@@ -31,7 +33,7 @@ filter:blur(0);
 }
 }
 
-body.fade-out{
+.page-content.fade-out{
 opacity:0;
 filter:blur(10px);
 transition:opacity .35s ease, filter .35s ease;
@@ -177,15 +179,17 @@ line-height:1.7;
 </head>
 
 <body>
- 
+
+<div class="page-content">
+
 <header>
 
 <div class="brand">
 
 <img class="logo-img" src="Logopreview1.jpg">
- 
-<h1> Febry Fvnky Shop</h1>
 
+<h1> Febry Fvnky Shop</h1>
+ 
 </div>
 
 </header>
@@ -244,6 +248,8 @@ dengan harga yang cukup terjangkau.
 </ul>
 
 </div>
+
+</div>
  
 <div class="bottom-menu">
 
@@ -265,7 +271,7 @@ if(this.target=="_blank") return;
 
 e.preventDefault();
 
-document.body.classList.add("fade-out");
+document.querySelector(".page-content").classList.add("fade-out");
 
 setTimeout(()=>{
 location.href=this.href;
