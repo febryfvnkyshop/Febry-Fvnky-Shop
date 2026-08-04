@@ -198,16 +198,6 @@ flex:1;
 width:100%;
 }
 
-.preview-box audio{
-display:none;
-width:100%;
-margin-top:10px;
-}
-
-.preview-box audio.show{
-display:block;
-} 
-
 button{
 color:white;
 border:none;
@@ -237,17 +227,18 @@ cursor:pointer;
 .music-player{
 display:none;
 position:fixed;
-top:60px;
+top:65px;
 left:50%;
 transform:translateX(-50%);
 width:300px;
-z-index:2000;
+z-index:3000;
 border-radius:15px;
+background:white;
 }
  
 .music-player.show{
 display:block;
-} 
+}
 
 .stats-box{
 position:fixed;
