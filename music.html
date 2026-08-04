@@ -236,11 +236,15 @@ cursor:pointer;
 
 .music-player{
 display:none;
-width:100%;
-margin:20px auto 0;
+position:fixed;
+top:60px;
+left:50%;
+transform:translateX(-50%);
+width:300px;
+z-index:2000;
 border-radius:15px;
 }
-
+ 
 .music-player.show{
 display:block;
 } 
