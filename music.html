@@ -368,11 +368,46 @@ margin-right:6px;
 }
 
 .price span{
-color:#22c55e;
-font-weight:bold;
-font-size:18px;
+font-size:20px;
+font-weight:700;
+
+background:linear-gradient(
+180deg,
+#ffffff 0%,
+#f3f4f6 20%,
+#d1d5db 45%,
+#9ca3af 70%,
+#ffffff 100%
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 5px rgba(255,255,255,.45),
+0 0 12px rgba(220,220,220,.35);
+
+animation:silverGlow 2.5s ease-in-out infinite;
 }
- 
+
+@keyframes silverGlow{
+
+0%,100%{
+filter:brightness(1);
+text-shadow:
+0 0 5px rgba(255,255,255,.4),
+0 0 10px rgba(220,220,220,.25);
+}
+
+50%{
+filter:brightness(1.2);
+text-shadow:
+0 0 10px rgba(255,255,255,.8),
+0 0 20px rgba(255,255,255,.45);
+}
+
+}
+
 .volume{
 flex:1;
 }
