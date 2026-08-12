@@ -411,6 +411,30 @@ text-shadow:
 .volume{
 flex:1;
 }
+
+.search-box{
+display:flex;
+justify-content:center;
+margin:20px 0;
+}
+
+.search-box input{
+width:320px;
+max-width:90%;
+padding:12px 18px;
+border:none;
+border-radius:30px;
+outline:none;
+background:rgba(255,255,255,.1);
+backdrop-filter:blur(10px);
+color:#fff;
+font-size:15px;
+box-shadow:0 0 15px rgba(59,130,246,.25);
+}
+
+.search-box input::placeholder{
+color:#ddd;
+}
  
 </style>
 
@@ -423,6 +447,14 @@ flex:1;
 <p>Kumpulan Project FL Studio Mobile</p>
  
 </header>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Cari judul atau style..."
+    >
+</div>
 
 <div class="stats-box">
 📦 Produk: 13<br>
@@ -1167,6 +1199,26 @@ location.href=this.href;
 },350);
 
 });
+
+});
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function () {
+
+    const keyword = this.value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const text = card.innerText.toLowerCase();
+
+        if(text.includes(keyword)){
+            card.style.display = "";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
 
 });
 
