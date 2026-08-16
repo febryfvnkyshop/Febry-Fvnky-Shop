@@ -460,6 +460,23 @@ color:#ddd;
         0 0 15px rgba(255,80,0,.6);
 }
 
+.promo-fire::before{
+    content:"🔥 ";
+    display:inline-block;
+    animation:fireEmoji .8s infinite alternate;
+}
+
+@keyframes fireEmoji{
+    0%{
+        transform:scale(1) rotate(-8deg);
+        filter:hue-rotate(0deg);
+    }
+    100%{
+        transform:scale(1.3) rotate(8deg);
+        filter:hue-rotate(60deg);
+    }
+}
+
 @keyframes fireFlow{
 
 0%{
@@ -1124,7 +1141,7 @@ const promo = {
 
     diskon: 15000,
 
-    nama: "🔥 Promo Spesial 17 Agustus"
+    nama: "Promo Spesial 17 Agustus"
 };
  
 function promoAktif() {
