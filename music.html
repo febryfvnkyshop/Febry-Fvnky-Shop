@@ -1078,7 +1078,63 @@ oninput="audio.volume=this.value">
 </div>
  
 <script>
+ 
+const promo = {
+    aktif: true, // true = promo aktif
 
+    mulai: new Date("2026-08-16T20:00:00"),
+
+    selesai: new Date("2026-08-17T00:00:00"),
+
+    diskon: 10000,
+
+    nama: "🔥 Promo Spesial 17 Agustus"
+};
+ 
+function promoAktif() {
+
+    const sekarang = new Date();
+
+    return promo.aktif &&
+           sekarang >= promo.mulai &&
+           sekarang <= promo.selesai;
+
+}
+
+function formatRupiah(angka){
+    return "Rp" + angka.toLocaleString("id-ID");
+}
+
+function updatePromo(){
+
+    if(!promoAktif()) return;
+
+    document.querySelectorAll(".card").forEach(card=>{
+
+        let harga = card.querySelector(".price span");
+        let coret = card.querySelector(".price del");
+
+        let hargaNormal = parseInt(
+            harga.innerText.replace(/[^\d]/g,"")
+        );
+
+        let hargaPromo = hargaNormal - promo.diskon;
+
+        if(hargaPromo < 0) hargaPromo = 0;
+
+        harga.innerHTML = "🔥 " + formatRupiah(hargaPromo);
+
+        let info = document.createElement("p");
+        info.style.color = "#ff4444";
+        info.style.fontWeight = "bold";
+        info.innerHTML = promo.nama;
+
+        harga.parentNode.appendChild(info);
+
+    });
+
+}
+ 
 let songs = [
 {
 name:"🎵 Bintang 5 - Tenxi",
@@ -1370,7 +1426,10 @@ searchInput.addEventListener("input", function () {
 
 });
 
+updatePromo();
+
 </script>
 
 </body>
 </html>
+ 
