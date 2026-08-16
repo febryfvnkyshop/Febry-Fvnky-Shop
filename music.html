@@ -1146,49 +1146,54 @@ function updatePromo(){
     document.querySelectorAll(".card").forEach(card=>{
 
         let harga = card.querySelector(".price span");
-        let coret = card.querySelector(".price del");
+        let buy = card.querySelector(".buy-link");
 
-        let hargaNormal = parseInt(
-            coret.innerText.replace(/[^\d]/g,"")
-        );
+        let hargaNormal = parseInt(buy.dataset.price);
+        let hargaYangDipakai = hargaNormal;
 
         if(promoAktif()){
 
             let hargaPromo = hargaNormal - promo.diskon;
+
             if(hargaPromo < 0) hargaPromo = 0;
+
+            hargaYangDipakai = hargaPromo;
 
             harga.innerHTML = "🔥 " + formatRupiah(hargaPromo);
 
             if(!card.querySelector(".promo-fire")){
+
                 let info = document.createElement("p");
+
                 info.className = "promo-fire";
+
                 info.textContent = promo.nama;
+
                 harga.parentNode.appendChild(info);
             }
 
-}else{
+        }else{
 
-    harga.innerHTML = formatRupiah(hargaNormal);
+            harga.innerHTML = formatRupiah(hargaNormal);
 
-    let info = card.querySelector(".promo-fire");
-    if(info) info.remove();
+            let info = card.querySelector(".promo-fire");
 
-    let buy = card.querySelector(".buy-link");
+            if(info) info.remove();
+        }
 
-    let pesan = `Halo Febry Fvnky 👋
+        let pesan = `Halo Febry Fvnky 👋
 
 Saya ingin membeli produk berikut:
 
 🎵 Judul : ${buy.dataset.title}
 🎼 Style : ${buy.dataset.style}
-💰 Harga : ${formatRupiah(hargaNormal)}`;
+💰 Harga : ${formatRupiah(hargaYangDipakai)}`;
 
-    buy.href =
-    "https://wa.me/6287714002875?text=" +
-    encodeURIComponent(pesan);
-}
+        buy.href =
+        "https://wa.me/6287714002875?text=" +
+        encodeURIComponent(pesan);
 
-});
+    });
 
 }
  
