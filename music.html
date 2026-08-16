@@ -1122,7 +1122,7 @@ const promo = {
 
     selesai: new Date("2026-08-17T00:00:00"),
 
-    diskon: 10000,
+    diskon: 15000,
 
     nama: "🔥 Promo Spesial 17 Agustus"
 };
@@ -1146,49 +1146,43 @@ function updatePromo(){
     document.querySelectorAll(".card").forEach(card=>{
 
         let harga = card.querySelector(".price span");
-        let wa = card.querySelector("a");
+        let coret = card.querySelector(".price del");
 
-        if(!harga.dataset.normal){
-            harga.dataset.normal = parseInt(
-                harga.innerText.replace(/[^\d]/g,"")
-            );
-        }
-
-        let hargaNormal = parseInt(harga.dataset.normal);
-
-        let hargaTampil = promoAktif()
-            ? hargaNormal - promo.diskon
-            : hargaNormal;
-
-        if(hargaTampil < 0) hargaTampil = 0;
-
-        harga.innerHTML =
-            (promoAktif() ? "🔥 " : "") +
-            formatRupiah(hargaTampil);
-
-        let promoText = card.querySelector(".promo-fire");
-
-        if(promoAktif()){
-            if(!promoText){
-                promoText = document.createElement("p");
-                promoText.className = "promo-fire";
-                promoText.textContent = promo.nama;
-                harga.parentNode.appendChild(promoText);
-            }
-        }else{
-            if(promoText) promoText.remove();
-        }
-
-        let url = new URL(wa.href);
-        let text = decodeURIComponent(url.searchParams.get("text"));
-
-        text = text.replace(
-            /Harga\s:\sRp[\d.]+/,
-            "Harga : " + formatRupiah(hargaTampil)
+        let hargaNormal = parseInt(
+            coret.innerText.replace(/[^\d]/g,"")
         );
 
-        url.searchParams.set("text", text);
-        wa.href = url.toString();
+        if(promoAktif()){
+
+            let hargaPromo = hargaNormal - promo.diskon;
+            if(hargaPromo < 0) hargaPromo = 0;
+
+            harga.innerHTML = "🔥 " + formatRupiah(hargaPromo);
+
+            if(!card.querySelector(".promo-fire")){
+                let info = document.createElement("p");
+                info.className = "promo-fire";
+                info.textContent = promo.nama;
+                harga.parentNode.appendChild(info);
+            }
+
+        }else{
+
+            // Balik ke harga normal (harga promo bawaan HTML)
+            let hargaAsliPromo = parseInt(
+                harga.dataset.normal ||
+                harga.innerText.replace(/[^\d]/g,"")
+            );
+
+            if(!harga.dataset.normal){
+                harga.dataset.normal = hargaAsliPromo;
+            }
+
+            harga.innerHTML = formatRupiah(hargaAsliPromo);
+
+            let info = card.querySelector(".promo-fire");
+            if(info) info.remove();
+        }
 
     });
 
