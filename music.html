@@ -1151,7 +1151,7 @@ function updatePromo(){
         let coret = card.querySelector(".price del");
 
         let hargaNormal = parseInt(
-            harga.innerText.replace(/[^\d]/g,"")
+            coret.innerText.replace(/[^\d]/g,"")
         );
 
         let hargaPromo = hargaNormal - promo.diskon;
@@ -1160,12 +1160,13 @@ function updatePromo(){
 
         harga.innerHTML = "🔥 " + formatRupiah(hargaPromo);
 
-        let info = document.createElement("p");
-        info.style.color = "#ff4444";
-        info.style.fontWeight = "bold";
-        info.innerHTML = promo.nama;
+        if(!card.querySelector(".promo-fire")){
+            let info = document.createElement("p");
+            info.className = "promo-fire";
+            info.textContent = promo.nama;
 
-        harga.parentNode.appendChild(info);
+            harga.parentNode.appendChild(info);
+        }
 
     });
 
