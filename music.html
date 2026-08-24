@@ -1188,14 +1188,8 @@ const promo = {
     nama: "Promo Spesial 17 Agustus"
 };
  
-function promoAktif() {
-
-    const sekarang = new Date();
-
-    return promo.aktif &&
-           sekarang >= promo.mulai &&
-           sekarang <= promo.selesai;
-
+function promoAktif(){
+    return true;
 }
 
 function formatRupiah(angka){
